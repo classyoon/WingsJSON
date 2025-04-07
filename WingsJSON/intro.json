@@ -1,0 +1,68 @@
+[
+  {
+    "id": "intro_1",
+    "text": "Your first memory is warmth. You’re curled beneath your mother's wing. Her horns were...",
+    "choices": [
+      {
+        "text": "Graceful and curved like ancient trees.",
+        "next": "intro_2",
+        "set": { "mother_horns": "curved", "player_horns": "curved" }
+      },
+      {
+        "text": "Jagged and fearsome, like obsidian blades.",
+        "next": "intro_2",
+        "set": { "mother_horns": "jagged", "player_horns": "jagged" }
+      }
+    ]
+  },
+  {
+    "id": "intro_2",
+    "text": "You hear your father’s roar echo through the mountains. His scales shimmered like...",
+    "choices": [
+      {
+        "text": "Molten gold.",
+        "next": "intro_3",
+        "set": { "father_scales": "gold", "player_scales": "gold" }
+      },
+      {
+        "text": "Stormy skies.",
+        "next": "intro_3",
+        "set": { "father_scales": "storm", "player_scales": "storm" }
+      }
+    ]
+  },
+  {
+    "id": "intro_3",
+    "text": "You remember the comfort of your family's den, the scent of stone and smoke. Then, a shadow blots out the sky. \nA monstrous figure crashes down. Your mother stands, her {{mother_horns}} horns ready. Your father’s {{father_scales}} scales flash as he roars.\nBrutefang has come...",
+    "choices": [
+      {
+        "text": "Call out in fear.",
+        "next": "intro_4"
+      },
+      {
+        "text": "Hide behind a rock.",
+        "next": "intro_4"
+      }
+    ]
+  },
+  {
+    "id": "intro_4",
+    "text": "Flames and fury fill your vision. The clash of titans leaves your den in ruins. \nYour mother’s {{mother_horns}} horns are shattered. Your father’s {{father_scales}} scales are dulled and bloodied. \nWhen the smoke clears, you are alone.",
+    "choices": [
+      {
+        "text": "Step into the ashes.",
+        "next": "start_adventure"
+      }
+    ]
+  },
+  {
+    "id": "start_adventure",
+    "text": "You are a hatchling no longer protected. But within you, remnants of your parents remain — {{player_horns}} horns, {{player_scales}} scales. \nYou must survive, grow, and one day face Brutefang.",
+    "choices": [
+      {
+        "text": "Begin your journey.",
+        "next": "todo_next_part"
+      }
+    ]
+  }
+]
