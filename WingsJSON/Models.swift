@@ -25,12 +25,26 @@ struct Choice: Codable {
 class DragonCYOAGame {
     private var nodes: [String: StoryNode] = [:]
     private var playerState: [String: String] = [:]
-    private var currentNode: StoryNode?
+    private var currentNodeInternal: StoryNode?
 
     init(jsonData: Data) {
         loadStory(jsonData: jsonData)
     }
+    // Add these to DragonCYOAGame
+    var currentNode: StoryNode? {
+        return currentNodeInternal
+    }
 
+    func formattedText(for node: StoryNode) -> String {
+        return formatText(node.text)
+    }
+
+    func makeChoice(_ index: Int) {
+        guard let node = currentNodeInternal, index < node.choices.count else { return }
+        let choice = node.choices[index]
+        apply(stateChanges: choice.set)
+        currentNodeInternal = nodes[choice.next]
+    }
     private func loadStory(jsonData: Data) {
         let decoder = JSONDecoder()
         do {
@@ -38,19 +52,19 @@ class DragonCYOAGame {
             for node in storyArray {
                 nodes[node.id] = node
             }
-            currentNode = nodes["intro_1"]
+            currentNodeInternal = nodes["intro_1"]
         } catch {
             print("Failed to load story: \(error)")
         }
     }
 
     func start() {
-        while let node = currentNode {
+        while let node = currentNodeInternal {
             present(node: node)
             guard let choiceIndex = getChoiceIndex(from: node) else { break }
             let choice = node.choices[choiceIndex]
             apply(stateChanges: choice.set)
-            currentNode = nodes[choice.next]
+            currentNodeInternal = nodes[choice.next]
         }
     }
 
